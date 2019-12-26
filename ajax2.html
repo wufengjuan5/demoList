@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var ajax=function(json){
+            json.opt={
+                url:'',
+                methond:'get',
+                data:{},
+                success(response){console.log('jjjj')},
+                error(){}
+            };
+            Object.assign(json.opt,json);
+            console.log(json.opt);
+            var urlStr=''
+            for(var attr in json.opt.data){
+                urlStr+=attr+'='+json.opt.data[attr]+'&'
+            }
+            urlStr=urlStr.slice(0,urlStr.length-1)
+            console.log(urlStr);
+            var request=new XMLHttpRequest();
+            if(json.opt.methond==='get'){
+                request.open('get',json.opt.url+'?'+urlStr);
+                request.send();
+            }else{
+                request.open('post',urlStr);
+                request.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+                request.send(urlStr);
+            };
+            request.onload=function(){
+                if(request.status==200){
+                  json.opt.success(this.responseText)
+                }
+            }
+            
+        }
+        ajax({
+            data:{name:'leo','sex':'女'}
+        })
+    </script>
+</body>
+</html>

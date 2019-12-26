@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <button id="btn" value="请求数据">请求数据</button>
+        <p id="c"></p>
+    <script type="text/javascript">           
+        let btnRequest = document.getElementById('btn');
+        btnRequest.addEventListener('click', load, false);
+        function load() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'ajaxTest.txt',true);
+        //两种方式请求 onload / onreadystatechange
+        
+        xhr.onload = function(){
+            console.log(`onload 状态码${xhr.readyState}`);
+            console.log(`这是onload函数请求的文本:${this.responseText}`);
+        }
+        //当state状态发生改变时回调一次后面的匿名函数
+        xhr.onreadystatechange = function(){
+            console.log(`onreadystatechange 状态码${xhr.readyState}`);
+            console.log(`这是onreadychange函数请求的文本:${this.responseText}`);
+        }
+        xhr.send();
+        }
+    </script>
+</body>
+</html>

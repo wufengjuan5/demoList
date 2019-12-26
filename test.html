@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 300px;
+            height: 500px;
+            background-color: wheat;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="box">
+                <p id="p1">这是一个段落</p>
+                <p id="p2">第二个段落</p>
+        </div>            
+    </div>
+    <script>
+        var main=document.getElementById('main')
+        var box=document.getElementById('box')
+        var p1=document.getElementById('p1')
+        var newnode=box.cloneNode()
+        main.appendChild(newnode)
+        // main.removeChild(newnode)
+        var p3=document.createElement('p')
+        p3.innerHTML='这是第三个p节点';
+        // box.replaceChild(p3,p1);
+        p1.parentNode.replaceChild(p3,p1);
+        var style=window.getComputedStyle(box,null).getPropertyValue("height")
+        console.log(style)
+        
+    </script>
+</body>
+</html>

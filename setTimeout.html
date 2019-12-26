@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+<p>点击按钮 2 秒后输出 "Hello"。</p>
+
+<p>实例中，我们也会输出传递给 alertFunc() 函数的参数 ( IE9 及更早版本不支持 )。</p>
+
+<button onclick="myStartFunction()">开始</button>
+
+<p id="demo"></p>
+
+<p id="demo2" style="color:red;"></p>
+
+<script>
+var myVar;
+
+function myStartFunction() {
+    myVar = setTimeout(alertFunc, 2000, "Runoob", "Google");
+    //使用函数声明不兼容IE9及以前的版本。最好使用匿名函数
+}
+
+function alertFunc(param1, param2) {
+    document.getElementById("demo").innerHTML += "Hello ";
+
+    document.getElementById("demo2").innerHTML = "传递给 alertFunc() 的参数: <br>" 
+    + param1 + "<br>" + param2 + "<br>";
+}
+</script>
+</body>
+</html>

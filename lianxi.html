@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery-3.3.1.js"></script>
+    <style>
+        body{
+            margin:0;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .top{
+            height: 240px;
+            background: #4fcc17;
+            color:white;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+        .date{
+            line-height: 80px;
+        }
+        .num{
+            font-size: 75px;         
+            line-height: 50px; 
+        }
+        .list{
+            margin-top: 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+        }
+        .item{
+            float: left;
+            width:50px;
+            height:50px;
+            background: palegoldenrod;
+            border-radius: 50px;
+            border: 3px solid white;
+        }
+        .main{
+            padding:10px 20px;
+            height: 500px;
+            margin-top: 250px;
+        }
+        .weekdays{
+            display: flex;
+            justify-content: space-around;
+        }
+        .days{
+            text-align: center;
+            margin-top: 10px;
+            overflow: hidden;
+            padding: 10px 5px;
+        }
+        .days-item{
+            float: left;
+            width:30px;
+            height: 30px;
+            background: #4fcc17;
+            border-radius: 15px;
+            line-height: 30px;
+            margin-right: 18px;
+            margin-bottom: 10px;
+        }
+        .days li:nth-child(7n){
+            margin-right: 0;
+        }
+        .part{
+            height: 150px;
+            background: pink;
+            margin-bottom: 20px;
+        }
+        .xz{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div class="date">打卡天数</div>
+        <span class="num">150</span>
+            <ul class="list">
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+            </ul>
+    </div>
+    <div class="main">
+            <div class="part"></div>
+            <div class="part"></div>
+            <p>10月</p>
+            <div class="weekdays">
+                    <span>一</span>
+                    <span>二</span>
+                    <span>三</span>
+                    <span>四</span>
+                    <span>五</span>
+                    <span>六</span>
+                    <span>日</span>
+            </div>
+            <ul class="days">
+                <li class="days-item">1</li>
+                <li class="days-item">2</li>
+                <li class="days-item">3</li>
+                <li class="days-item">4</li>
+                <li class="days-item">1</li>
+                <li class="days-item">2</li>
+                <li class="days-item">3</li>
+                <li class="days-item">4</li>
+                <li class="days-item">1</li>
+                <li class="days-item">2</li>
+                <li class="days-item">3</li>
+                <li class="days-item">4</li>
+                <li class="days-item">1</li>
+                <li class="days-item">2</li>
+                <li class="days-item">3</li>
+                <li class="days-item">4</li>
+            </ul>
+    </div>
+    <script>
+          /*var a,b,c;
+            a=$("#dh").offset().top;//元素相对于窗口的距离
+            b=$(window).scrollTop(); //监控窗口已滚动的距离;
+            c=$(document).height();//整个文档的高度
+            d=$(window).height();//浏览器窗口的高度
+            el  标签
+            cssname  动画
+            offset  相对于窗口的距离
+        */
+        function scrollnum(el,cssname,offset){
+            var a,b,c,d;
+            d = $(el).offset().top;
+            a = eval(d + offset);
+            b = $(window).scrollTop();
+            c = $(window).height();
+            if (b + c > a) {
+                $((el)).addClass((cssname));
+            }
+        }
+        function scrollfun() {
+            scrollnum(".num", 'xz', 400);
+        }
+
+        $(document).ready(function (e) {
+            scrollfun();
+            $(window).scroll(function () {
+                scrollfun();
+                var div=$(".num"); 
+                div.animate({fontSize:'3em'},"speed");
+            });
+        });
+    </script>
+</body>
+</html>

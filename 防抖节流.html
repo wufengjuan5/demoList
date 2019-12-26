@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content" style="height:150px;line-height:150px;text-align:center; color: #fff;background-color:#ccc;font-size:80px;"></div>
+    <input id="inPut" type="text"><button id="btn">搜索</button>
+    <input id="inPut2" type="text"><button id="btn2">搜索</button>
+    <button id='btn3'>函数节流</button>
+<script>
+    //非立即执行
+    //触发事件n秒内执行，如果在n秒内再次触发事件则重新执行计算时间，清除上次未执行的代码
+    let num = 1;
+    let content = document.getElementById('content');
+
+    function count() {
+        console.log(1)
+
+        content.innerHTML = num++;
+    };
+    function debounce(func, wait) {
+        let timeout2;
+            
+    return function () {
+        // console.log(arguments[0],arguments.length)
+        if (timeout2) clearTimeout(timeout2);//清除未执行的代码
+        timeout2 = setTimeout(() => {
+            func()
+        }, wait);
+    }
+}
+    content.onmousemove = debounce(count,1000);
+    var timeout3=null;
+    var debounceFn=function(wait,fn){
+        clearTimeout(timeout3);//清除未执行的代码
+        timeout3=setTimeout(fn,wait);
+    };
+    window.addEventListener('resize',function(){
+        debounceFn(2000,function(){
+            console.log(666)
+            window.location.reload()
+        })
+    })
+
+    var iPt=document.getElementById('inPut')
+    var bTn=document.getElementById('btn')
+    iPt.oninput=function(){
+        ajaxFn(2000,function(){
+            alert(38888)
+        })
+    }
+    let timeout;
+    function ajaxFn(wait,fn){
+        if (timeout) clearTimeout(timeout);//清除未执行的代码
+        timeout = setTimeout(() => {
+            fn()
+            console.log(timeout)
+        }, wait);
+    }
+    //立即执行
+    //立即执行版的意思是触发事件后函数会立即执行，然后 n 秒内不触发事件才能继续执行函数的效果。
+    var iPt2=document.getElementById('inPut2')
+    var bTn2=document.getElementById('btn2')
+    var timeout4;
+    function executeFun(wait,cd){
+        return function(){
+        var content=this;
+        var arg=arguments;
+        if(timeout4) clearTimeout(timeout4);
+        let callNow=!timeout4;
+        timeout4=setTimeout(function(){
+            timeout4=null;
+        },wait); 
+        if(callNow) cd.apply(content,arg);
+        }
+    };
+    function cd(){
+        console.log(9999)
+    }
+    bTn2.onclick=executeFun(2000,cd);
+
+var btn3=document.getElementById('btn3');
+btn3.onclick=throttle(thr,3000);
+let timer;
+// function throttle(cd,wait){
+//     return function(){
+//         if(timer) return;
+//         timer=setTimeout(function(){
+//             debugger
+//             cd();
+//             timer=null;
+//         },wait)
+//     }
+// }
+function thr(){
+    console.log(88888)
+}
+let lastTime=0;
+function throttle(cd,wait){
+    return function(){
+        let currTime=+new Date()
+        if(currTime-lastTime>wait){
+            cd();
+            lastTime=+new Date();
+        }
+    }
+}
+    //函数节流
+    //函数节流的 setTimeout 版简单实现
+
+</script> 
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <script>
+        var op = document.querySelectorAll("p");
+        for (var j = 0; j < op.length; j++) {
+            // (function(j){
+            //     op[j].onclick = function() {
+            //         alert(j);
+            //     };
+            // })(j)
+
+
+            op[j].onclick = (function(j) {
+                return function() {
+                alert(j);
+                };
+            })(j);
+        }
+
+
+        for (var i = 0; i < 4; i++) {
+            setTimeout(
+                (function(i) {
+                    console.log(i);
+                })(i),
+                300
+            );
+        }
+
+        for (var i = 0; i< 5; i++) {
+            setTimeout(
+                (function() {
+                    console.log(i)
+                })(),
+                300
+            );
+        }
+
+        // for(var i = 0;i<5;i++){
+        //     setTimeout(((i)=>{
+        //         console.log(i)
+        //     })(i),1000*i)
+        // }
+var a=function(e){
+    setTimeout(function(){
+        console.log(e);
+    },2000)
+}
+for(var i=0;i<5; i++){
+    a(i);
+};
+
+var fn=function(callback){
+    callback(333)
+};
+fn(function(a){
+    alert(a)
+});
+var fn1=function(a){
+    alert(a)
+};
+
+fn(fn1)
+
+    </script>
+</body>
+</html>

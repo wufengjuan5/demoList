@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        // function fn(arr){
+        //     var newArr=[];
+        //     for(var i=0; i<arr.length; i++){
+        //         for(var j=0; j<i;j++){
+        //             if(arr[i]%arr[j]==0 && arr[j]!=arr[i]&&arr[j]!=1){//不是素数
+                        
+        //             }else{
+        //                 newArr.push(arr[i])
+        //             }
+        //         }
+        //     } 
+        //     return newArr
+        // }
+        // console.log(fn(arr))
+        var arr01=[1,2,5,3,8,3,5,9];
+        function listMax(arr01){
+            for(var i=0;i<arr01.length; i++){
+                for(var j=i+1; j<arr01.length; j++){
+                    if(arr01[i]<arr01[j]){
+                        var time=arr01[i];
+                        arr01[i]=arr01[j];
+                        arr01[j]=time;       
+                        console.log(arr01)     
+                    }
+                    console.log(arr01)     
+                }
+            }
+            return arr01;
+        }
+        alert(listMax(arr01))
+        var str1='eeerre123j'
+        var str2=str1.replace('r','u');
+        var str3=str1.replace(/\d+/,function(a,b,str){
+            console.log(a,b)
+            console.log(typeof(a))
+            var str4=a+1;
+            console.log(str4)
+            return str4
+        })
+        console.log(str2)
+        console.log(str3)
+        var str5='afdf98fdfa'
+        console.log(str5.match(/a/g))
+        console.log(str5.search(/df/));
+        window.onload=function(){
+            var arr=['我们','你我他','我','我们的','他的','ta']
+            var list=document.querySelector('.list');
+            console.log(list)
+            var li_html='';
+
+            for(var i=0; i<arr.length; i++){
+                console.log(arr[i])
+                // if(arr[i].search(/我/)!=-1){
+                //     li_html+='<li>'+arr[i]+'</li>'
+                // }
+                if(/的/.test(arr[i])){
+                    li_html+='<li>'+arr[i]+'</li>'
+                }
+            }
+            li_html=arr.map(function(item){
+                if(item.search(/的/)!=-1){
+                    return '<li>'+item+'</li>'
+                }               
+            }).join('')
+            list.innerHTML=li_html;
+            var a="Doe, John";
+            console.log(a.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1"))
+            var str='8808a'
+            console.log(str.charAt(2))
+            console.log(str.indexOf('a'));
+            var str="'dd','da','adfd'";
+           console.log(str.split(',').length);
+           var str='abcgdg'
+           console.log(str.slice(2,4));
+           var arr=['1','2','3','4']
+           console.log(arr.splice(3));
+           console.log(arr);
+        var str='a3bc4d'
+        console.log(str.match(/\d+/g))
+        console.log(str.search(/\d/))
+
+        }
+    </script>
+    <div class="box">
+        <ul class="list">
+            
+        </ul>
+    </div>
+</body>
+</html>
